@@ -1,0 +1,21 @@
+.section-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.mat-row:hover {
+    background-color: #E8EAF6;
+    cursor: pointer;
+}
+
+table {
+    width: 80%;
+}
+
+h2 {
+    font-size: 36px;
+    color: #4050b5;
+}
