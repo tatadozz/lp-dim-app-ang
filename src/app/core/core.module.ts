@@ -6,6 +6,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -16,9 +17,9 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     CommonModule,
     SharedModule
   ],
-  exports: [
+  exports :[
     HeaderComponent,
     FooterComponent
-  ]
+  ],
 })
 export class CoreModule { }

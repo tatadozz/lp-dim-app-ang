@@ -1,39 +1,44 @@
-import { HttpClient } from '@angular/common/http';
+import { environment } from './../../../environments/environment';
+import { Student } from './../../core/models/student';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Student } from 'src/app/core/models/student';
-import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { max, Observable } from 'rxjs';
 
 @Injectable()
 export class StudentService {
+  private readonly studentPath: string = '/student';
 
-  private readonly studentPath: string = "/student"
+  constructor(private _http: HttpClient) {}
 
-  constructor(private _http: HttpClient) { }
+  get(): Observable<Student[]> {
+    return this._http.get<Student[]>(
+      `${environment.apiBaseUrl}${this.studentPath}`
+    );
+  }
 
-    //getAll
-    get(): Observable<Student[]> {
-      return this._http.get<Student[]>(`${environment.apiBaseUrl}${this.studentPath}`);
-    }
+  getById(id: number): Observable<Student> {
+    return this._http.get<Student>(
+      `${environment.apiBaseUrl}${this.studentPath}/${id}`
+    );
+  }
 
-    //getById
-    getStudentById(id: number): Observable<Student>{
-      return this._http.get<Student>(`${environment.apiBaseUrl}${this.studentPath}/${id}`);
-    } 
+  create(student: Student): Observable<string> {
+    return this._http.post<string>(
+      `${environment.apiBaseUrl}${this.studentPath}`,
+      student
+    );
+  }
 
-    //post
-    createStudent(student: Student): Observable<Student>{
-      return this._http.post<Student>(`${environment.apiBaseUrl}${this.studentPath}`, student);
-    }
+  update(student: Student): Observable<string> {
+    return this._http.put<string>(
+      `${environment.apiBaseUrl}${this.studentPath}/${student.id}`,
+      student
+    );
+  }
 
-    //update
-    updateStudent(student: Student): Observable<Student>{
-      return this._http.put<Student>(`${environment.apiBaseUrl}${this.studentPath}`, student);
-    }
-
-    //delete
-    deleteStudent(id: number): Observable<any>{
-      return this._http.delete(`${environment.apiBaseUrl}${this.studentPath}/${id}`);
-    }
-
+  delete(id: number): Observable<string> {
+    return this._http.delete<string>(
+      `${environment.apiBaseUrl}${this.studentPath}/${id}`
+    );
+  }
 }

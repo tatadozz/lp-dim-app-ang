@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'lp-dim-app-ang';
+  title = 'lp-dim-app';
 }
